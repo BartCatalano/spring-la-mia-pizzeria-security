@@ -1,0 +1,31 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body class="bg-dark text-white">
+    <!-- Navbar -->
+    <div th:replace="~{fragments/NavBar :: navbar}"></div>
+
+    <!-- Contenuto principale -->
+    <div class="container text-center mt-5">
+        <div class="jumbotron bg-secondary text-white">
+            <h2 class="display-4">Benvenuti nella Pizzaria </h2>
+            <h1>GRANDE PIRAMIDE D'EGITTO</h1>
+            <p class="lead mt-3">
+                Gustate l’autentica pizza Egiziana cotta nel forno a legna, preparata con ingredienti freschi e tanto amore.
+            </p>
+            <p>
+                Da oltre 20 anni portiamo il sapore della tradizione Egiziana direttamente sulla vostra tavola.
+                Siamo aperti tutti i giorni dalle 12:00 alle 23:00.
+            </p>
+    
+        </div>
+    </div>
+
+    <!-- Script Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

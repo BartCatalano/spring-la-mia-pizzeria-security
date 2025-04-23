@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Home</title>
+</head>
+
+<body >
+    <!-- Navbar -->
+    <div th:replace="~{fragments/NavBar :: navbar}"></div>
+    <h1>Sono pagina Index Igredienti</h1>
+
+    <div class="container mt-5 text-center mb-4">
+        <h1>Lista Ingredienti</h1>
+
+        <a class="btn btn-primary btn-sm" th:href="@{ingredienti/create}">Nuovo Ingrediente</a>
+    </div>
+    <div class="d-flex justify-content-center align-items-center">
+    <section class="text-center">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nome Ingrediente</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ingrediente : ${ingredienti}">
+                        <td th:text="${ingrediente.nameIngrediente}">Nome</td>
+                        <td><a class="btn btn-primary btn-sm" th:href="@{'/ingredienti/edit/' + ${ingrediente.id}}">Modifica ingrediente</a></td>
+                        <td>
+                            <form action="#" th:action="@{ingredienti/delete/{id} (id=${ingrediente.id})}" method="post">
+                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </section>
+</div></div>
+            <!-- Script Bootstrap -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    
+
+    <title>Home</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/NavBar :: navbar}"></div>
+    <h1>Sono Dettaglio pizze</h1>
+
+     <!-- Accedi all'oggetto pizza -->
+     <div class="container mt-5">
+        <h1 class="text-center mb-4">Dettaglio pizza [[${pizza.name}]]</h1>
+        <div class="row">
+            <!-- Itera sulle pizze con Thymeleaf -->
+                <div class="card">
+                    <!-- Mostra il nome della pizza -->
+                        <h5 class="card-title text-center" th:text="${pizza.name}"></h5>
+                        <!-- Mostra la descrizione della pizza -->
+                        <p class="card-text px-2" th:text="${pizza.descrizione}"></p>
+                        <!-- Mostra il prezzo della pizza -->
+                        <p class="card-text px-2">
+                            Prezzo: <span th:text="${pizza.prezzo}"></span>
+                        </p>
+                    
+                    <div class="card-body d-flex flex-column">
+
+                        <section class="row mb-3 offerta">
+                            <div class="col-12">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome Offerta</th>
+                                            <th>Data Inizio</th>
+                                            <th>Data Fine</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="offerta : ${pizza.getOfferte()}">
+                                            <td th:text="${offerta.nomeOfferta}">Nome</td>
+                                            <td th:text="${offerta.inizioOfferta}">Inizio</td>
+                                            <td th:text="${offerta.fineOfferta}">Fine</td>
+                                            <td>
+                                                <a class="btn btn-success btn-sm" 
+                                                   th:href="@{/offerta/edit/{id}(id=${offerta.id})}">
+                                                   Modifica Offerta
+                                                </a></td>
+                                                <td>
+                                                    <form action="#" th:action="@{/offerta/delete/{id}(id=${offerta.id})}" method="post">
+                                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                    </form></td>
+                                              
+                                              
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

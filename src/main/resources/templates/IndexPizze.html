@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Menu Pizze</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<body>
+    <div th:replace="~{fragments/NavBar :: navbar}"></div>
+  <div class="container text-center mt-5">
+    <form action="pizze/search" method="get">
+        <input type="text" name="name" placeholder="Cerca una pizza..." />
+        <button type="submit">Cerca</button>
+    </form> </div>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Menu Pizze</h1>
+        <div class="row">
+            <!-- Itera sulle pizze con Thymeleaf -->
+            <div th:each="pizza : ${pizze}" class="col-md-4 mb-4">
+                <div class="card">
+                    <!-- Mostra l'immagine della pizza -->
+                    <img th:src="@{${pizza.foto}}" class="card-img-top" alt="Immagine Pizza">
+                    <div class="card-body d-flex flex-column">
+                        <!-- Mostra il nome della pizza -->
+                        <h5 class="card-title" th:text="${pizza.name}"></h5>
+                        <!-- Mostra la descrizione della pizza -->
+                        <p class="card-text" th:text="${pizza.descrizione}"></p>
+                        <!-- Mostra il prezzo della pizza -->
+                        <p class="card-text">
+                            Prezzo: <span th:text="${pizza.prezzo}"></span>
+                        </p>
+                       <div th:each="ingrediente : ${pizza.getIngredienti()}"><span th:text="${ingrediente.nameIngrediente}"></span> </div> 
+                        <!-- Bottone per aggiungere la pizza al carrello -->
+                         <div class="row ml-2">
+                        <a class="btn btn-primary btn-sm" th:href="@{/pizze/{id} (id=${pizza.id})}" th:text="dettaglio"></a>
+                        <a class="btn btn-info btn-sm" th:href="@{/pizze/edit/{id} (id=${pizza.id})}" th:text="Modify"></a>
+                        <a class="btn btn-secondary btn-sm" th:href="@{/pizze/{id}/offerta (id=${pizza.id})}" th:text="Offerta"></a>
+                        <form action="#" th:action="@{pizze/delete/{id}(id=${pizza.id})}" method="post">
+                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                        </form></div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script di Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

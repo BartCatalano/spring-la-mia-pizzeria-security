@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <title>Create</title>
+</head>
+
+<body>
+    <div th:replace="~{fragments/NavBar :: navbar}"></div>
+    <h1 class="container">Sono Il Form di Creazione</h1>
+    <div class="row justify-content-center">
+
+        <div class="col-6">
+            <form id="PizzaForm" th:action="@{/pizze/create}" method="post" th:object="${pizza}">
+                <div class="mb-3 ps-2" th:if="${#fields.hasErrors()}">
+                    <ul class="alert alert-danger">
+                        <li th:each="error : ${#fields.allErrors()}" th:text="${error}" />
+                    </ul>
+                </div>
+                 <div th:each="ingrediente : ${ingredienti}">
+                    <input type="checkbox" th:value="${ingrediente.id}" th:field="*{ingredienti}" >
+                    <label for="${ingrediente}">
+                    <div th:text="${ingrediente.nameIngrediente}"></div></label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="name">Nome Pizza</label>
+                    <input class="form-control" type="text" id="name" th:field="*{name}">
+                </div>
+
+                <div class="mb-3">
+                    <label for="descrizione">Descrizione</label>
+                    <input type="text" id="descrizione" th:field="*{descrizione}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="foto">Foto</label>
+                    <input type="url" id="foto" th:field="*{foto}" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="prezzo">Prezzo</label>
+                    <input type="number" step="0.01" id="prezzo" th:field="*{prezzo}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Create New Pizza</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
