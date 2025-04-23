@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -50,8 +52,8 @@ public class PizzaRestController {
         return new ResponseEntity<Pizza>(service.create(pizza),HttpStatus.OK);
     }
     // UPDATE
-    @PostMapping
-    public ResponseEntity<Pizza> UPDATE(@RequestBody Pizza pizza) {
+    @PutMapping("/{id}")
+    public ResponseEntity<Pizza> UPDATE(@PathVariable Integer id, @RequestBody Pizza pizza) {
         return new ResponseEntity<Pizza>(service.update(pizza),HttpStatus.OK);
     }
 

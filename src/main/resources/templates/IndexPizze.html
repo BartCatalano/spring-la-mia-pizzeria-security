@@ -32,12 +32,12 @@
                         </p>
                        <div th:each="ingrediente : ${pizza.getIngredienti()}"><span th:text="${ingrediente.nameIngrediente}"></span> </div> 
                         <!-- Bottone per aggiungere la pizza al carrello -->
-                         <div class="row ml-2">
+                         < class="row ml-2">
                         <a class="btn btn-primary btn-sm" th:href="@{/pizze/{id} (id=${pizza.id})}" th:text="dettaglio"></a>
-                        <a class="btn btn-info btn-sm" th:href="@{/pizze/edit/{id} (id=${pizza.id})}" th:text="Modify"></a>
-                        <a class="btn btn-secondary btn-sm" th:href="@{/pizze/{id}/offerta (id=${pizza.id})}" th:text="Offerta"></a>
+                        <a sec:authorize="hasAutority('ADMIN')" class="btn btn-info btn-sm" th:href="@{/pizze/edit/{id} (id=${pizza.id})}" th:text="Modify"></a>
+                        <a  sec:authorize="hasAutority('ADMIN')" class="btn btn-secondary btn-sm" th:href="@{/pizze/{id}/offerta (id=${pizza.id})}" th:text="Offerta"></a>
                         <form action="#" th:action="@{pizze/delete/{id}(id=${pizza.id})}" method="post">
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            <button sec:authorize="hasAutority('ADMIN')" class="btn btn-danger btn-sm" type="submit">Delete</button>
                         </form></div>
 
 
