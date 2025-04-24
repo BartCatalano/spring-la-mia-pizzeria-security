@@ -9,7 +9,7 @@
 <body>
 
     <div th:fragment="navbar">
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">Pizzeria Grande Piramide d'Egitto</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,10 +23,10 @@
                         <div th:replace="~{fragments/fragments :: button('/pizze', 'Menu')}"></div>
                     </li>
                     <li class="nav-item">
-                        <div th:replace="~{fragments/fragments :: button('/pizze/create', 'New Pizza')}"></div>
+                        <div sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/fragments :: button('/pizze/create', 'New Pizza')}"></div>
                     </li>
                     <li class="nav-item">
-                        <div th:replace="~{fragments/fragments :: button('/ingredienti', 'Ingredienti')}"></div>
+                        <div sec:authorize="hasAuthority('ADMIN')" th:replace="~{fragments/fragments :: button('/ingredienti', 'Ingredienti')}"></div>
                     </li>
                 </ul>
                 <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
@@ -35,9 +35,7 @@
             <div class="user-info">  
 				Logged user: <span sec:authentication="name" class="fw-bold me-2"></span>
 				Roles: <span sec:authentication="principal.authorities" class="fst-italic me-2"></span>
-				<form action="/logout" method="POST">
-                    <button type="submit">Logout</button>
-                </form>     
+				<a href="/logout" class="btn btn-danger">Logout</a>
 			</div>
         </nav>
     </div>

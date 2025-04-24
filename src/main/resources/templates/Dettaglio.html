@@ -47,13 +47,13 @@
                                             <td th:text="${offerta.inizioOfferta}">Inizio</td>
                                             <td th:text="${offerta.fineOfferta}">Fine</td>
                                             <td>
-                                                <a class="btn btn-success btn-sm" 
+                                                <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-success btn-sm" 
                                                    th:href="@{/offerta/edit/{id}(id=${offerta.id})}">
                                                    Modifica Offerta
                                                 </a></td>
                                                 <td>
                                                     <form action="#" th:action="@{/offerta/delete/{id}(id=${offerta.id})}" method="post">
-                                                        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                        <button sec:authorize="hasAuthority('ADMIN')" class="btn btn-danger btn-sm" type="submit">Delete</button>
                                                     </form></td>
                                               
                                               
